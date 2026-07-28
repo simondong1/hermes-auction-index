@@ -7,6 +7,7 @@ import { EmptyState, MiniBar, Pill, SectionTitle, StatsRow } from "./primitives"
 interface Props {
   family: FamilyMeta;
   lots: Lot[];
+  sellThroughKnown: boolean;
   onSelectBucket: (bucket: string) => void;
 }
 
@@ -16,7 +17,7 @@ interface Props {
  * Headline sizes always render, even at zero lots, so a gap in the market is visible
  * rather than merely absent. Sizes outside the ladder collect into their own bucket.
  */
-export function SizeBreakdown({ family, lots, onSelectBucket }: Props) {
+export function SizeBreakdown({ family, lots, sellThroughKnown, onSelectBucket }: Props) {
   const stats = computeStats(lots);
   const byBucket = new Map<string, Lot[]>();
   for (const lot of lots) {
@@ -54,7 +55,7 @@ export function SizeBreakdown({ family, lots, onSelectBucket }: Props) {
               : undefined
           }
         />
-        <StatsRow stats={stats} />
+        <StatsRow stats={stats} sellThroughKnown={sellThroughKnown} />
         <div className="rounded-xl border hairline bg-white/50 p-4">
           <TrendChart data={halfYearTrend(lots)} height={220} />
         </div>

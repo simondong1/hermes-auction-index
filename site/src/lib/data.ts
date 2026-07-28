@@ -95,7 +95,7 @@ export function readUrl(): { route: Route; filters: Filters } {
   const to = params.get("to");
   if (from) filters.yearFrom = Number(from);
   if (to) filters.yearTo = Number(to);
-  if (params.get("all") === "1") filters.soldOnly = false;
+  if (params.get("sold") === "1") filters.soldOnly = true;
   filters.query = params.get("q") ?? "";
 
   return {
@@ -126,7 +126,7 @@ export function writeUrl(route: Route, filters: Filters, mode: "push" | "replace
   }
   if (filters.yearFrom != null) params.set("from", String(filters.yearFrom));
   if (filters.yearTo != null) params.set("to", String(filters.yearTo));
-  if (!filters.soldOnly) params.set("all", "1");
+  if (filters.soldOnly) params.set("sold", "1");
   if (filters.query) params.set("q", filters.query);
 
   const next = `#/${params.toString()}`;

@@ -162,6 +162,7 @@ export default function App() {
         <SizeBreakdown
           family={family}
           lots={familyLots}
+          sellThroughKnown={!filters.soldOnly}
           onSelectBucket={(bucket) => setRoute({ family: family.key, bucket, variant: null })}
         />
       ) : !route.variant ? (
@@ -183,7 +184,7 @@ export default function App() {
               variantLots.length ? shortDate(variantLots[0].saleDate) : "—"
             }.`}
           />
-          <StatsRow stats={computeStats(variantLots)} />
+          <StatsRow stats={computeStats(variantLots)} sellThroughKnown={!filters.soldOnly} />
           {variantLots.length >= 4 ? (
             <div className="rounded-xl border hairline bg-white/50 p-4">
               <TrendChart data={halfYearTrend(variantLots)} height={200} />

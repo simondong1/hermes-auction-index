@@ -100,6 +100,8 @@ export const EMPTY_FILTERS: Filters = {
   editions: [],
   yearFrom: null,
   yearTo: null,
-  soldOnly: true,
+  // Off by default. Every price statistic already ignores lots that did not sell, so
+  // hiding them buys nothing and makes sell-through read a meaningless 100%.
+  soldOnly: false,
   query: "",
 };

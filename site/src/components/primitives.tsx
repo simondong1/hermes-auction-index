@@ -61,7 +61,16 @@ export function Stat({
 }
 
 /** The four-number summary used under every bucket heading. */
-export function StatsRow({ stats, dense = false }: { stats: PriceStats; dense?: boolean }) {
+export function StatsRow({
+  stats,
+  dense = false,
+  sellThroughKnown = true,
+}: {
+  stats: PriceStats;
+  dense?: boolean;
+  /** False when unsold lots have been filtered out, which would force 100%. */
+  sellThroughKnown?: boolean;
+}) {
   return (
     <dl className={`grid ${dense ? "grid-cols-4 gap-4" : "grid-cols-2 gap-5 sm:grid-cols-4"}`}>
       <Stat label="Median" value={cny(stats.median)} emphasis={!dense} />
@@ -74,8 +83,14 @@ export function StatsRow({ stats, dense = false }: { stats: PriceStats; dense?: 
       <Stat label="Sold" value={count(stats.soldCount)} />
       <Stat
         label="Sell-through"
-        value={percent(stats.sellThrough)}
-        hint={stats.hiddenCount > 0 ? `${count(stats.hiddenCount)} withheld` : undefined}
+        value={sellThroughKnown ? percent(stats.sellThrough) : "—"}
+        hint={
+          !sellThroughKnown
+            ? "unsold lots are filtered out"
+            : stats.hiddenCount > 0
+              ? `${count(stats.hiddenCount)} withheld`
+              : undefined
+        }
       />
     </dl>
   );

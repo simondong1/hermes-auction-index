@@ -40,7 +40,8 @@ export function FilterBar({ lots, houses, filters, onChange, resultCount }: Prop
     (filters.yearFrom != null ? 1 : 0) +
     (filters.yearTo != null ? 1 : 0) +
     (filters.query ? 1 : 0) +
-    (filters.soldOnly ? 0 : 1);
+    // Counted only when switched on, since off is the default.
+    (filters.soldOnly ? 1 : 0);
 
   return (
     <div className="sticky top-0 z-20 -mx-4 border-b hairline bg-paper/90 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">

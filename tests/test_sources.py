@@ -390,3 +390,20 @@ def test_heritage_yields_nothing_and_explains_itself_without_a_dump(tmp_path, ca
     with caplog.at_level("WARNING"):
         assert list(source.iter_lots(dt.date(2021, 7, 1), dt.date(2026, 7, 28))) == []
     assert "no Heritage dump" in caplog.text
+
+
+def test_heritage_lazy_load_placeholder_is_not_treated_as_an_image():
+    """Rows whose thumbnail had not loaded carry an inline data: URI, not a URL."""
+    row = {
+        **HERITAGE_ROW,
+        "image_url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E",
+    }
+    lot = offline(HeritageSource)._to_raw_lot(row)
+    assert lot is not None
+    assert lot.image_url is None
+
+
+def test_heritage_host_casing_is_normalised():
+    lot = offline(HeritageSource)._to_raw_lot(HERITAGE_ROW)
+    assert lot is not None
+    assert lot.lot_url is not None and "HA.com" not in lot.lot_url

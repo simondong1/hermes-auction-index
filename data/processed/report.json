@@ -1,35 +1,36 @@
 {
   "by_family": {
-    "birkin": 5077,
-    "kelly": 3538,
-    "kelly_pochette": 376,
-    "mini_kelly": 758
+    "birkin": 5652,
+    "kelly": 3861,
+    "kelly_pochette": 435,
+    "mini_kelly": 865
   },
   "by_house": {
     "artcurial": 386,
     "bonhams": 1217,
     "christies": 4437,
+    "heritage": 1064,
     "poly_hk": 209,
     "sothebys": 3500
   },
   "by_outcome": {
     "result_hidden": 149,
-    "sold": 8723,
+    "sold": 9787,
     "unknown": 11,
     "unsold": 864,
     "withdrawn": 2
   },
-  "carried_forward_rates": 328,
+  "carried_forward_rates": 459,
   "fx_failures": 0,
-  "in_scope": 9749,
-  "priced_in_cny": 8723,
-  "raw_lots": 17664,
-  "sold": 8723,
+  "in_scope": 10813,
+  "priced_in_cny": 9787,
+  "raw_lots": 18980,
+  "sold": 9787,
   "unresolved_fields": {
-    "colour": 178,
-    "hardware": 352,
-    "leather": 133,
-    "size_cm": 188
+    "colour": 206,
+    "hardware": 360,
+    "leather": 142,
+    "size_cm": 198
   },
   "vocabulary_gaps": {
     "colour": [
@@ -38,15 +39,23 @@
         9
       ],
       [
+        "35cm",
+        8
+      ],
+      [
+        "metallic",
+        7
+      ],
+      [
+        "chamkilight",
+        7
+      ],
+      [
         "caramel",
         7
       ],
       [
-        "metallic",
-        6
-      ],
-      [
-        "chamkilight",
+        "40cm",
         6
       ],
       [
@@ -62,11 +71,19 @@
         5
       ],
       [
+        "parchment",
+        5
+      ],
+      [
         "son",
         5
       ],
       [
         "paille",
+        4
+      ],
+      [
+        "aubergine",
         4
       ],
       [
@@ -83,6 +100,18 @@
       ],
       [
         "amazone",
+        3
+      ],
+      [
+        "ecorce",
+        3
+      ],
+      [
+        "28cm",
+        3
+      ],
+      [
+        "20cm",
         3
       ],
       [
@@ -122,11 +151,15 @@
         3
       ],
       [
-        "aubergine",
+        "ecru",
         3
       ],
       [
         "rain",
+        3
+      ],
+      [
+        "cigare",
         3
       ],
       [
@@ -142,7 +175,7 @@
         3
       ],
       [
-        "ecorce",
+        "mousse",
         2
       ],
       [
@@ -159,38 +192,6 @@
       ],
       [
         "horse",
-        2
-      ],
-      [
-        "sun",
-        2
-      ],
-      [
-        "tomekon",
-        2
-      ],
-      [
-        "handle",
-        2
-      ],
-      [
-        "transparent",
-        2
-      ],
-      [
-        "macassar",
-        2
-      ],
-      [
-        "ecru",
-        2
-      ],
-      [
-        "origan",
-        2
-      ],
-      [
-        "cardamon",
         2
       ]
     ],
@@ -272,6 +273,14 @@
         6
       ],
       [
+        "souvenir",
+        6
+      ],
+      [
+        "exposition",
+        6
+      ],
+      [
         "metallic",
         5
       ],
@@ -296,6 +305,10 @@
         4
       ],
       [
+        "40cm",
+        4
+      ],
+      [
         "flap",
         4
       ],
@@ -309,14 +322,6 @@
       ],
       [
         "palladie",
-        4
-      ],
-      [
-        "souvenir",
-        4
-      ],
-      [
-        "exposition",
         4
       ],
       [
@@ -349,10 +354,6 @@
       ],
       [
         "henry",
-        3
-      ],
-      [
-        "tim",
         3
       ]
     ]

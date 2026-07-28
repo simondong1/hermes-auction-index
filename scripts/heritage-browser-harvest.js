@@ -106,7 +106,11 @@ window.HeritageHarvest = (function () {
       description: notes.join(" | ") || null,
       sale_date: dateMatch ? dateMatch[1] : null,
       price_text: priceEl ? clean(priceEl.textContent) : null,
-      image_url: img ? img.getAttribute("data-original") || img.getAttribute("src") : null,
+      // Beyond roughly the first 24 rows Heritage lazy-loads thumbnails: `src` holds an
+      // inline SVG placeholder and the real URL sits in `data-src`. Check that first.
+      image_url: img
+        ? img.getAttribute("data-src") || img.getAttribute("data-original") || img.getAttribute("src")
+        : null,
     };
   }
 

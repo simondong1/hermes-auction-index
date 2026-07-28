@@ -150,10 +150,17 @@ def _two_places(amount: Decimal) -> Decimal:
 
 
 def _https(url: Any) -> str | None:
-    """Heritage mixes host casing (``jewelry.HA.com``); normalise so keys stay stable."""
+    """Normalise a Heritage URL, or return ``None`` if it is not a real one.
+
+    Two quirks to absorb: Heritage mixes host casing (``jewelry.HA.com``), which would
+    otherwise destabilise lot keys across runs; and rows whose thumbnail had not been
+    lazy-loaded carry an inline ``data:image/svg+xml`` placeholder rather than a URL.
+    """
     if not url:
         return None
     text = str(url).strip()
     if text.startswith("//"):
         text = f"https:{text}"
+    if not text.lower().startswith(("http://", "https://")):
+        return None
     return re.sub(r"^(https?://)([^/]+)", lambda m: m.group(1) + m.group(2).lower(), text)

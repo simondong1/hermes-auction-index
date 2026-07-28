@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  /* Hermès-adjacent palette: warm paper, saddle-tan neutrals, the signature orange. */
+  --color-paper: #faf7f1;
+  --color-paper-deep: #f2ede3;
+  --color-ink: #1b1917;
+  --color-ink-soft: #55504a;
+  --color-ink-faint: #8b847a;
+  --color-rule: #e3dcd0;
+  --color-orange: #ea5b0c;
+  --color-orange-soft: #fbe9dc;
+  --color-saddle: #8a5a2b;
+  --color-moss: #55613f;
+  --color-plum: #6b3550;
+
+  --font-display: "Optima", "Palatino Linotype", "Palatino", "Georgia", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Menlo", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "tnum" 0;
+}
+
+/* Tabular figures everywhere money is shown, so columns line up. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* A thin rule used as a section divider, echoing catalogue typography. */
+.hairline {
+  border-color: var(--color-rule);
+}
+
+::selection {
+  background: var(--color-orange-soft);
+}
+
+/* Recharts leaves focus outlines on SVG wrappers; suppress without hurting a11y
+   because every chart has an adjacent accessible table or label. */
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

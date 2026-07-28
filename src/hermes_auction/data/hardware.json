@@ -1,0 +1,16 @@
+{
+  "$comment": "Hermes hardware finishes. Matched longest-alias-first, case- and accent-insensitively. `abbrev` is the collector shorthand used in the published UI. Aliases include French forms (Artcurial catalogues as 'Garniture metal plaque or') and a few real catalogue typos, because the point of an alias list is to match what houses actually printed.",
+  "hardware": [
+    { "canonical": "Palladium", "abbrev": "PHW", "aliases": ["brushed palladium", "palladium hardware", "palladium plated", "plaque palladium", "plaqué palladium", "metal argente palladie", "palladium", "phw", "palladié", "palladie", "palldaium", "paladium"] },
+    { "canonical": "Gold", "abbrev": "GHW", "aliases": ["brushed gold", "gold hardware", "gold plated", "gold-plated", "plaque or", "plaqué or", "metal dore", "métal doré", "ghw", "doré", "dore", "gold hardare"] },
+    { "canonical": "Electrum", "abbrev": "EHW", "aliases": ["electrum hardware", "electrum"] },
+    { "canonical": "Rhodium", "abbrev": "RHHW", "aliases": ["rhodium hardware", "rhodium", "rhodié", "rhodie"] },
+    { "canonical": "Rose Gold", "abbrev": "RGHW", "aliases": ["rose gold hardware", "rose gold", "rghw", "pink gold"] },
+    { "canonical": "Ruthenium", "abbrev": "RUHW", "aliases": ["brushed ruthenium", "ruthenium hardware", "ruthenium"] },
+    { "canonical": "Permabrass", "abbrev": "PBHW", "aliases": ["permabrass", "perma brass"] },
+    { "canonical": "White Gold & Diamond", "abbrev": "DIAM", "aliases": ["18k white gold and diamond", "white gold and diamond", "diamond hardware", "diamond-set", "diamond set", "serti de diamants", "diamond", "diamants"] },
+    { "canonical": "Guilloche", "abbrev": "GUIL", "aliases": ["guilloche", "guilloché"] },
+    { "canonical": "Enamel", "abbrev": "ENAM", "aliases": ["enamel hardware", "enamel"] },
+    { "canonical": "Black (So Black)", "abbrev": "BHW", "aliases": ["black hardware", "so black hardware", "pvd black"] }
+  ]
+}

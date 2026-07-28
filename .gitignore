@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+.npm-cache/
+site/dist/
+# Staged from data/processed by the build; not a source file.
+site/public/dataset.json
+
+# Harvest artefacts.
+# data/raw/*.jsonl IS committed - it is the audit trail behind every published number.
+# The HTTP cache and partial writes are not.
+data/cache/
+data/*.partial
+data/raw/*.partial
+data/harvest.log
+
+# OS
+.DS_Store

@@ -16,7 +16,7 @@ true, it is recorded as a limitation rather than worked around.
 | Bonhams | live | Typesense search proxy | public, hammer + premium | ~900 |
 | Artcurial | live | Open `/ace` JSON REST API | public, hammer + premium | ~355 |
 | Poly Auction HK | live | PHP API + static client key | public, hammer + premium | ~207 |
-| **Heritage Auctions** | **blocked** | metadata reachable; **prices need a free account** | **account-walled** | ~1,300–1,600 |
+| Heritage Auctions | adapter ready, **browser-assisted harvest** | signed-in browser session required | public *once signed in* | ~1,300–1,600 |
 | Phillips | skipped | excellent API, no handbag department | public | ~0 |
 | Julien's | skipped | hard Cloudflare bot challenge | public | unknown |
 | Rago / Wright | skipped | `robots.txt` disallows every needed path | unknown | low |
@@ -168,7 +168,90 @@ The API is genuinely slow (13–31 s on large pulls), which is why the client ti
 
 ---
 
-## Heritage Auctions — blocked on prices
+## Heritage Auctions — browser-assisted
+
+Heritage is the only source that cannot be harvested by an HTTP client, for two
+independent reasons. Both were verified against the live site.
+
+### Wall 1: prices are account-walled (solved by a free account)
+
+Confirmed signed **out** — the number is omitted server-side, so there is nothing in the
+HTML to recover:
+
+- rows render `Sold For: [Sign-in] or [Join]`;
+- the page carries Google's paywall markup,
+  `{"@type":"WebPageElement","isAccessibleForFree":false,"cssSelector":".bot-price-data"}`;
+- `/c/print-prices-realized.zx` 302-redirects to the login page;
+- the `price_realized` bracket facet is exposed but silently disabled — an A/B against a
+  bracket the facet said only 19 lots satisfy returned a byte-identical 72-lot page.
+
+Confirmed signed **in** — prices appear immediately:
+`<div class="current-amount">Sold For: <span class="bold bot-price-data">$17,000.00</span>`,
+with zero references to `login.zx` on the page.
+
+### Wall 2: DataDome blocks non-browser clients (and automated ones)
+
+DataDome, behind Cloudflare, 403s anything that is not a real browser, and its cookie is a
+rotating session artefact. In testing it also blocked the automated browser used to drive
+the harvest: pacing at 2 s per page got roughly fifteen pages through, then returned a
+766-byte DataDome interstitial for **every** subsequent request — including page 1, which
+had worked moments earlier. The block survived a real top-level navigation and a
+multi-minute cooldown, which points at browser fingerprinting rather than plain rate
+limiting.
+
+`robots.txt` sets `Crawl-delay: 15`. Honour it from the first request.
+
+### The working recipe
+
+```
+GET /c/search/results.zx
+    ?term=hermes+birkin&si=2&archive_state=5327&sold_status=1526
+    &sb=5&mode=archive&page=72~<n>
+```
+
+| Parameter | Meaning |
+|---|---|
+| `si=2` | search titles **and** descriptions |
+| `archive_state=5327` | auction archives |
+| `sold_status=1526` | sold lots only |
+| `sb=5` | **sale date, newest first** — lets the walk stop at the window boundary |
+| `page=72~n` | 72 per page (the maximum; larger values fall back to 48) |
+
+Parsing, per `li.item-block`:
+
+| Field | Selector |
+|---|---|
+| title | `a.item-title > b` |
+| blind stamp, condition grade, dimensions | the `a.item-title > i` siblings |
+| sale + lot number | `href` matching `/a/(\d+)-(\d+)\.s` |
+| sale date | `div.lotno` → `Auction N \| Lot: N \| Mon D, YYYY` |
+| realised price | `.bot-price-data` |
+| image | `img[data-original]` or `img[src]` |
+
+With `sb=5` the walk is short: Birkin reached mid-2021 on page 10, Kelly on about page 11,
+Mini Kelly on page 2 and Kelly Pochette on page 1 — roughly **24 page loads** for the whole
+five-year window.
+
+### How to run it
+
+`scripts/heritage-browser-harvest.js` implements the above. It checkpoints every page to
+`localStorage`, so a DataDome block, a navigation or a closed tab costs at most the page in
+flight rather than the run. Paste it into the DevTools console of a signed-in `ha.com` tab
+in your normal browser and call `await HeritageHarvest.runAll()`; re-run it to resume.
+
+Save the output to `data/heritage-browser-dump.json`, then:
+
+```bash
+uv run hermes-auction harvest --house heritage
+uv run hermes-auction build
+```
+
+`HeritageSource` converts the dump into the same `RawLot` shape as every other house, so it
+flows through identical normalisation, scope filtering and FX conversion. Heritage's
+"Sold For" is premium-inclusive and quoted in USD; they publish no estimates for this
+category, so those fields stay empty rather than being invented.
+
+## Heritage Auctions — the original anonymous findings
 
 Heritage has the largest Hermès handbag archive of any house here (~2,500 Birkin and
 ~2,200 Kelly lots all-time, of which roughly 1,300–1,600 fall in our window), so this is

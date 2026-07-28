@@ -27,7 +27,7 @@ Bag type  →  Size  →  Individual bag (leather × colour × hardware)
 | Bonhams | public, hammer + premium | Typesense search proxy |
 | Artcurial | public, hammer + premium | Hermès Vintage / Luxury Bags series |
 | Poly Auction HK | public, hammer + premium | Handbag salerooms, HKD |
-| Heritage Auctions | **account-walled** | Metadata reachable, prices are not — see below |
+| Heritage Auctions | public once signed in | Browser-assisted harvest — see below |
 
 Every record comes from the auction house's own published results. No aggregator, no
 resale platform, and **no price is ever inferred**. A lot whose result the house declines
@@ -37,14 +37,26 @@ sell-through denominator — never counted as unsold.
 [`docs/sources.md`](docs/sources.md) documents the access path, coverage and known
 limitations of each house, including the four we deliberately skipped and why.
 
-### The Heritage gap
+### Heritage: browser-assisted
 
-Heritage Auctions has the largest Hermès handbag archive of any house (~1,300–1,600
-in-scope lots for this window), and its realised prices are **omitted server-side** for
-anonymous visitors — confirmed via schema.org paywall markup, a login redirect on the
-prices-realised endpoint, and a verified A/B showing the price-bracket facet is disabled
-without a session. Registration is free, so this is an account decision rather than a
-technical wall. Everything else about the harvest already works.
+Heritage has the largest Hermès handbag archive of any house (~1,300–1,600 in-scope lots for
+this window) and is the only source that cannot be harvested by an HTTP client. Prices are
+omitted server-side for anonymous visitors, and DataDome blocks non-browser clients —
+including automated ones, which it fingerprints and 403s after a few pages regardless of
+pacing.
+
+The adapter and a checkpointed in-page harvester are both built and tested. To fill it in,
+paste `scripts/heritage-browser-harvest.js` into the DevTools console of a signed-in
+`ha.com` tab in your normal browser:
+
+```js
+await HeritageHarvest.runAll();   // ~24 pages at the 15s crawl delay robots.txt asks for
+HeritageHarvest.copy();           // JSON to clipboard
+```
+
+Save it to `data/heritage-browser-dump.json`, then `harvest --house heritage` and `build`.
+It checkpoints to `localStorage` after every page, so a block costs one page, not the run.
+Full detail in [`docs/sources.md`](docs/sources.md).
 
 ## Layout
 

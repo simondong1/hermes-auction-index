@@ -60,10 +60,17 @@ def test_enrich_before_build_explains_itself(tmp_path):
     assert "Run `build` first" in result.output
 
 
-def test_harvest_rejects_a_house_with_no_adapter(tmp_path):
-    result = runner.invoke(app, ["harvest", "--house", "heritage", "--root", str(tmp_path)])
+def test_every_declared_house_has_an_adapter():
+    """The enum and the registry must not drift apart."""
+    from hermes_auction.models import AuctionHouse
+    from hermes_auction.sources import registry
+
+    assert set(AuctionHouse) == set(registry())
+
+
+def test_harvest_rejects_an_unknown_house(tmp_path):
+    result = runner.invoke(app, ["harvest", "--house", "not-a-house", "--root", str(tmp_path)])
     assert result.exit_code == 2
-    assert "No adapter registered" in result.output
 
 
 def test_gaps_renders_the_report_written_by_build(tmp_path):

@@ -24,5 +24,8 @@ data/*.partial
 data/raw/*.partial
 data/harvest.log
 
+# Browser-assisted Heritage dump: harvested from a signed-in session, not a source file.
+data/heritage-browser-dump.json
+
 # OS
 .DS_Store

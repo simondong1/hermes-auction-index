@@ -51,11 +51,16 @@ UrlStr = Annotated[str, AfterValidator(_validated_url)]
 
 
 class AuctionHouse(StrEnum):
-    """Sources this project harvests. Adding one means adding an adapter, nothing else."""
+    """Sources this project harvests. Adding one means adding an adapter, nothing else.
+
+    Every member must have a registered adapter - a test enforces it. Houses that were
+    surveyed and deliberately excluded (Phillips has no handbag department; Julien's is
+    behind a bot challenge; Rago disallows the needed paths in robots.txt) are recorded in
+    ``docs/sources.md`` rather than carried here as members that never harvest anything.
+    """
 
     CHRISTIES = "christies"
     SOTHEBYS = "sothebys"
-    PHILLIPS = "phillips"
     BONHAMS = "bonhams"
     HERITAGE = "heritage"
     ARTCURIAL = "artcurial"
@@ -65,7 +70,6 @@ class AuctionHouse(StrEnum):
 HOUSE_DISPLAY_NAMES: dict[AuctionHouse, str] = {
     AuctionHouse.CHRISTIES: "Christie's",
     AuctionHouse.SOTHEBYS: "Sotheby's",
-    AuctionHouse.PHILLIPS: "Phillips",
     AuctionHouse.BONHAMS: "Bonhams",
     AuctionHouse.HERITAGE: "Heritage Auctions",
     AuctionHouse.ARTCURIAL: "Artcurial",

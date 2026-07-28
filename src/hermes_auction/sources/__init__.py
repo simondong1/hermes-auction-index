@@ -8,6 +8,7 @@ from hermes_auction.sources import (  # noqa: F401
     artcurial,
     bonhams,
     christies,
+    heritage,
     poly_hk,
     sothebys,
 )

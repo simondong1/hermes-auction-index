@@ -84,7 +84,8 @@ _ARTIST_LIFESPAN_RE: Final = re.compile(
 )
 
 #: Christie's publishes a numeric condition grade; other houses use prose.
-_GRADE_RE: Final = re.compile(r"\bgrade\s*:?\s*([1-4])\b", re.IGNORECASE)
+#: Christie's prints "GRADE: 1"; Heritage prints "Condition: 3". Same 1-4 scale.
+_GRADE_RE: Final = re.compile(r"\b(?:grade|condition)\s*:?\s*([1-4])\b", re.IGNORECASE)
 
 _MASK_CHAR: Final = "\u0000"
 

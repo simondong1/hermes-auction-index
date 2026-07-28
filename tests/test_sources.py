@@ -10,11 +10,13 @@ import pytest
 
 from hermes_auction.http import HttpClient
 from hermes_auction.models import AuctionHouse, LotOutcome, PriceBasis
+from hermes_auction.parsing.attributes import parse_attributes
 from hermes_auction.sources import registry
 from hermes_auction.sources.artcurial import ArtcurialSource
 from hermes_auction.sources.base import AuctionSource, parse_date, parse_money
 from hermes_auction.sources.bonhams import BonhamsSource
 from hermes_auction.sources.christies import ChristiesSource
+from hermes_auction.sources.heritage import HeritageSource
 from hermes_auction.sources.poly_hk import PolyHongKongSource
 from hermes_auction.sources.sothebys import _read_result, _sale_url
 
@@ -322,3 +324,69 @@ def test_poly_lot_maps_with_hkd_hardcoded():
     assert lot.price_basis is PriceBasis.PREMIUM_INCLUSIVE
     assert lot.sale.sale_date == dt.date(2024, 5, 23)
     assert lot.lot_number == "1384"
+
+
+# --- Heritage (browser-assisted dump) -----------------------------------------------
+
+HERITAGE_ROW = {
+    "lot_url": "https://jewelry.HA.com/itm/luxury-accessories/bags/hermes-birkin-30cm-fauve-grizzly-suede-and-barenia-leather-ghillies-birkin-with-gold-hardware/a/5539-58118.s",
+    "sale_no": "5539",
+    "lot_no": "58118",
+    "title": (
+        "Hermès Birkin 30cm Fauve Grizzly Suede and Barenia Leather "
+        "Ghillies Birkin with Gold Hardware"
+    ),
+    "description": 'P Square, 2012 | Condition: 3 | 12" Width x 8" Height x 6" Depth',
+    "sale_date": "May 4, 2023",
+    "price_text": "$15,000.00",
+    "image_url": "https://dyn1.heritagestatic.com/ha?p=2-7-9-3-6-27936445&w=200&h=400&it=product",
+}
+
+
+def test_heritage_row_maps_onto_a_raw_lot():
+    lot = offline(HeritageSource)._to_raw_lot(HERITAGE_ROW)
+    assert lot is not None
+    assert lot.house is AuctionHouse.HERITAGE
+    assert lot.lot_key == "5539-58118"
+    assert lot.sale.sale_date == dt.date(2023, 5, 4)
+    assert lot.currency == "USD"
+    assert lot.price_realised == Decimal("15000.00")
+    # Heritage's "Sold For" is the total the buyer paid.
+    assert lot.price_basis is PriceBasis.PREMIUM_INCLUSIVE
+    assert lot.outcome is LotOutcome.SOLD
+    # Heritage does not publish estimates for this category; never invent one.
+    assert lot.estimate_low is None and lot.estimate_high is None
+    # Host casing is normalised so lot keys and URLs stay stable across runs.
+    assert lot.lot_url is not None and lot.lot_url.startswith("https://jewelry.ha.com/")
+
+
+def test_heritage_lot_without_a_visible_price_is_not_recorded_as_sold():
+    """Anonymous rows render "Sold For: Sign-in"; that is unknown, not unsold."""
+    row = {**HERITAGE_ROW, "price_text": "Sold For: Sign-in or Join (free & quick)"}
+    lot = offline(HeritageSource)._to_raw_lot(row)
+    assert lot is not None
+    assert lot.price_realised is None
+    assert lot.outcome is LotOutcome.UNKNOWN
+
+
+def test_heritage_blind_stamp_and_condition_reach_the_parser():
+    lot = offline(HeritageSource)._to_raw_lot(HERITAGE_ROW)
+    assert lot is not None
+    attributes = parse_attributes(lot.title, lot.subtitle, lot.description)
+    assert attributes is not None
+    assert attributes.size_cm == 30
+    # This lot is genuinely bi-material ("Grizzly Suede and Barenia Leather"), so either
+    # is a correct primary; what matters is that a real leather resolves.
+    assert attributes.leather in {"Barenia", "Grizzly"}
+    assert attributes.hardware == "Gold"
+    # Heritage writes "Condition: 3" where Christie's writes "GRADE: 1".
+    assert attributes.condition_grade == "3"
+    assert attributes.stamp_year == 2012
+    assert "Ghillies" in attributes.special_editions
+
+
+def test_heritage_yields_nothing_and_explains_itself_without_a_dump(tmp_path, caplog):
+    source = HeritageSource(cast(HttpClient, None), dump_path=tmp_path / "missing.json")
+    with caplog.at_level("WARNING"):
+        assert list(source.iter_lots(dt.date(2021, 7, 1), dt.date(2026, 7, 28))) == []
+    assert "no Heritage dump" in caplog.text

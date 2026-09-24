@@ -1,39 +1,82 @@
 {
   "by_family": {
-    "birkin": 5652,
-    "kelly": 3861,
-    "kelly_pochette": 435,
-    "mini_kelly": 865
+    "birkin": 5730,
+    "constance": 1195,
+    "kelly": 3986,
+    "kelly_pochette": 445,
+    "lindy": 283,
+    "mini_bolide": 85,
+    "mini_kelly": 877,
+    "mini_lindy": 238,
+    "picotin": 339
   },
   "by_house": {
-    "artcurial": 386,
-    "bonhams": 1217,
-    "christies": 4437,
-    "heritage": 1064,
-    "poly_hk": 209,
-    "sothebys": 3500
+    "artcurial": 400,
+    "bonhams": 1535,
+    "christies": 5427,
+    "heritage": 1074,
+    "poly_hk": 292,
+    "sothebys": 4450
   },
   "by_outcome": {
-    "result_hidden": 149,
-    "sold": 9787,
-    "unknown": 11,
-    "unsold": 864,
-    "withdrawn": 2
+    "result_hidden": 174,
+    "sold": 11860,
+    "unknown": 14,
+    "unsold": 1127,
+    "withdrawn": 3
   },
-  "carried_forward_rates": 459,
+  "carried_forward_rates": 549,
   "fx_failures": 0,
-  "in_scope": 10813,
-  "priced_in_cny": 9787,
-  "raw_lots": 19202,
-  "sold": 9787,
-  "unresolved_fields": {
-    "colour": 206,
-    "hardware": 360,
-    "leather": 142,
-    "size_cm": 198
+  "in_scope": 13178,
+  "objects_by_category": {
+    "accessories": 1790,
+    "equestrian_travel": 173,
+    "fashion": 767,
+    "home": 1387,
+    "jewellery": 1604,
+    "other": 586,
+    "silk": 1597,
+    "watches": 457
   },
+  "objects_by_house": {
+    "artcurial": 781,
+    "bonhams": 4528,
+    "christies": 1536,
+    "heritage": 113,
+    "poly_hk": 364,
+    "sothebys": 1039
+  },
+  "objects_in_scope": 8361,
+  "objects_sold": 7156,
+  "objects_with_year": 4367,
+  "priced_in_cny": 11860,
+  "raw_lots": 31723,
+  "sold": 11860,
+  "unresolved_fields": {
+    "colour": 251,
+    "hardware": 421,
+    "leather": 177,
+    "size_cm": 196
+  },
+  "untracked_bags": 4676,
   "vocabulary_gaps": {
     "colour": [
+      [
+        "constance",
+        29
+      ],
+      [
+        "chamkilight",
+        21
+      ],
+      [
+        "metallic",
+        16
+      ],
+      [
+        "lindy",
+        11
+      ],
       [
         "cloche",
         9
@@ -41,14 +84,6 @@
       [
         "35cm",
         8
-      ],
-      [
-        "metallic",
-        7
-      ],
-      [
-        "chamkilight",
-        7
       ],
       [
         "caramel",
@@ -59,7 +94,23 @@
         6
       ],
       [
+        "mirror",
+        6
+      ],
+      [
+        "picotin",
+        6
+      ],
+      [
         "sienne",
+        6
+      ],
+      [
+        "parchment",
+        6
+      ],
+      [
+        "bottle",
         6
       ],
       [
@@ -71,11 +122,11 @@
         5
       ],
       [
-        "parchment",
+        "prunoir",
         5
       ],
       [
-        "son",
+        "aubergine",
         5
       ],
       [
@@ -83,11 +134,35 @@
         4
       ],
       [
-        "aubergine",
+        "suede",
+        4
+      ],
+      [
+        "aizome",
+        4
+      ],
+      [
+        "quebracho",
+        4
+      ],
+      [
+        "mangue",
+        4
+      ],
+      [
+        "rosy",
         4
       ],
       [
         "bags",
+        4
+      ],
+      [
+        "constantia",
+        4
+      ],
+      [
+        "vin",
         4
       ],
       [
@@ -107,6 +182,22 @@
         3
       ],
       [
+        "mousse",
+        3
+      ],
+      [
+        "bolide",
+        3
+      ],
+      [
+        "pain",
+        3
+      ],
+      [
+        "epice",
+        3
+      ],
+      [
         "28cm",
         3
       ],
@@ -115,94 +206,34 @@
         3
       ],
       [
-        "aizome",
+        "limoncello",
         3
       ],
       [
-        "quebracho",
+        "sun",
+        3
+      ],
+      [
+        "tomekon",
         3
       ],
       [
         "chanel",
         3
-      ],
-      [
-        "top",
-        3
-      ],
-      [
-        "poudre",
-        3
-      ],
-      [
-        "grainee",
-        3
-      ],
-      [
-        "prunoir",
-        3
-      ],
-      [
-        "mangue",
-        3
-      ],
-      [
-        "rosy",
-        3
-      ],
-      [
-        "ecru",
-        3
-      ],
-      [
-        "rain",
-        3
-      ],
-      [
-        "cigare",
-        3
-      ],
-      [
-        "garniture",
-        3
-      ],
-      [
-        "metal",
-        3
-      ],
-      [
-        "without",
-        3
-      ],
-      [
-        "mousse",
-        2
-      ],
-      [
-        "pain",
-        2
-      ],
-      [
-        "epice",
-        2
-      ],
-      [
-        "annee",
-        2
-      ],
-      [
-        "horse",
-        2
       ]
     ],
     "leather": [
       [
+        "constance",
+        25
+      ],
+      [
         "paris",
-        20
+        21
       ],
       [
         "cuir",
-        17
+        19
       ],
       [
         "chanel",
@@ -213,8 +244,20 @@
         14
       ],
       [
+        "garniture",
+        13
+      ],
+      [
         "annee",
-        11
+        12
+      ],
+      [
+        "booklet",
+        12
+      ],
+      [
+        "metal",
+        12
       ],
       [
         "handle",
@@ -229,27 +272,19 @@
         11
       ],
       [
-        "garniture",
-        11
-      ],
-      [
-        "metal",
-        11
+        "graine",
+        10
       ],
       [
         "top",
         10
       ],
       [
-        "graine",
-        9
-      ],
-      [
         "authenticity",
         9
       ],
       [
-        "booklet",
+        "plaque",
         8
       ],
       [
@@ -265,11 +300,23 @@
         7
       ],
       [
+        "picotin",
+        6
+      ],
+      [
         "transparent",
         6
       ],
       [
-        "plaque",
+        "info",
+        6
+      ],
+      [
+        "rain",
+        6
+      ],
+      [
+        "cover",
         6
       ],
       [
@@ -281,19 +328,23 @@
         6
       ],
       [
+        "bottle",
+        6
+      ],
+      [
+        "lindy",
+        5
+      ],
+      [
         "metallic",
         5
       ],
       [
+        "espom",
+        5
+      ],
+      [
         "pique",
-        5
-      ],
-      [
-        "rain",
-        5
-      ],
-      [
-        "cover",
         5
       ],
       [
@@ -309,6 +360,10 @@
         4
       ],
       [
+        "toned",
+        4
+      ],
+      [
         "flap",
         4
       ],
@@ -321,41 +376,14 @@
         4
       ],
       [
-        "palladie",
+        "constantia",
         4
       ],
       [
-        "lilac",
-        3
-      ],
-      [
-        "toned",
-        3
-      ],
-      [
-        "jonathan",
-        3
-      ],
-      [
-        "bentley",
-        3
-      ],
-      [
-        "info",
-        3
-      ],
-      [
-        "son",
-        3
-      ],
-      [
-        "sir",
-        3
-      ],
-      [
-        "henry",
-        3
+        "vin",
+        4
       ]
     ]
-  }
+  },
+  "with_year": 13021
 }

@@ -31,24 +31,24 @@
   "objects_by_category": {
     "accessories": 1790,
     "equestrian_travel": 173,
-    "fashion": 767,
-    "home": 1387,
+    "fashion": 753,
+    "home": 1396,
     "jewellery": 1604,
-    "other": 586,
+    "other": 575,
     "silk": 1597,
     "watches": 457
   },
   "objects_by_house": {
     "artcurial": 781,
-    "bonhams": 4528,
-    "christies": 1536,
-    "heritage": 113,
+    "bonhams": 4525,
+    "christies": 1529,
+    "heritage": 112,
     "poly_hk": 364,
-    "sothebys": 1039
+    "sothebys": 1034
   },
-  "objects_in_scope": 8361,
-  "objects_sold": 7156,
-  "objects_with_year": 4367,
+  "objects_in_scope": 8345,
+  "objects_sold": 7142,
+  "objects_with_year": 4359,
   "priced_in_cny": 11860,
   "raw_lots": 31723,
   "sold": 11860,
@@ -58,7 +58,7 @@
     "leather": 177,
     "size_cm": 196
   },
-  "untracked_bags": 4676,
+  "untracked_bags": 4692,
   "vocabulary_gaps": {
     "colour": [
       [

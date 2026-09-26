@@ -1,73 +1,73 @@
 {
   "by_family": {
-    "birkin": 5730,
-    "constance": 1195,
-    "kelly": 3986,
-    "kelly_pochette": 445,
-    "lindy": 283,
-    "mini_bolide": 85,
+    "birkin": 5717,
+    "constance": 1235,
+    "kelly": 3975,
+    "kelly_pochette": 444,
+    "lindy": 295,
+    "mini_bolide": 90,
     "mini_kelly": 877,
-    "mini_lindy": 238,
-    "picotin": 339
+    "mini_lindy": 243,
+    "picotin": 359
   },
   "by_house": {
     "artcurial": 400,
     "bonhams": 1535,
     "christies": 5427,
-    "heritage": 1074,
+    "heritage": 1131,
     "poly_hk": 292,
     "sothebys": 4450
   },
   "by_outcome": {
     "result_hidden": 174,
-    "sold": 11860,
+    "sold": 11917,
     "unknown": 14,
     "unsold": 1127,
     "withdrawn": 3
   },
-  "carried_forward_rates": 549,
+  "carried_forward_rates": 524,
   "fx_failures": 0,
-  "in_scope": 13178,
+  "in_scope": 13235,
   "objects_by_category": {
-    "accessories": 1790,
-    "equestrian_travel": 173,
-    "fashion": 753,
-    "home": 1396,
-    "jewellery": 1604,
-    "other": 575,
-    "silk": 1597,
-    "watches": 457
+    "accessories": 1867,
+    "equestrian_travel": 178,
+    "fashion": 749,
+    "home": 1482,
+    "jewellery": 1684,
+    "other": 628,
+    "silk": 1740,
+    "watches": 480
   },
   "objects_by_house": {
     "artcurial": 781,
     "bonhams": 4525,
-    "christies": 1529,
-    "heritage": 112,
+    "christies": 1528,
+    "heritage": 580,
     "poly_hk": 364,
-    "sothebys": 1034
+    "sothebys": 1030
   },
-  "objects_in_scope": 8345,
-  "objects_sold": 7142,
-  "objects_with_year": 4359,
-  "priced_in_cny": 11860,
-  "raw_lots": 31723,
-  "sold": 11860,
+  "objects_in_scope": 8808,
+  "objects_sold": 7605,
+  "objects_with_year": 4437,
+  "priced_in_cny": 11917,
+  "raw_lots": 32628,
+  "sold": 11917,
   "unresolved_fields": {
     "colour": 251,
     "hardware": 421,
-    "leather": 177,
+    "leather": 178,
     "size_cm": 196
   },
-  "untracked_bags": 4692,
+  "untracked_bags": 4951,
   "vocabulary_gaps": {
     "colour": [
       [
         "constance",
-        29
+        32
       ],
       [
         "chamkilight",
-        21
+        22
       ],
       [
         "metallic",
@@ -80,10 +80,6 @@
       [
         "cloche",
         9
-      ],
-      [
-        "35cm",
-        8
       ],
       [
         "caramel",
@@ -123,6 +119,10 @@
       ],
       [
         "prunoir",
+        5
+      ],
+      [
+        "35cm",
         5
       ],
       [
@@ -225,7 +225,7 @@
     "leather": [
       [
         "constance",
-        25
+        26
       ],
       [
         "paris",
@@ -385,5 +385,5 @@
       ]
     ]
   },
-  "with_year": 13021
+  "with_year": 13076
 }

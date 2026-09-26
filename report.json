@@ -1,64 +1,65 @@
 {
   "by_family": {
     "birkin": 5717,
-    "constance": 1235,
+    "constance": 1268,
     "kelly": 3975,
     "kelly_pochette": 444,
-    "lindy": 295,
-    "mini_bolide": 90,
+    "lindy": 307,
+    "mini_bolide": 91,
     "mini_kelly": 877,
-    "mini_lindy": 243,
-    "picotin": 359
+    "mini_lindy": 247,
+    "picotin": 375
   },
   "by_house": {
     "artcurial": 400,
     "bonhams": 1535,
     "christies": 5427,
-    "heritage": 1131,
+    "heritage": 1197,
     "poly_hk": 292,
     "sothebys": 4450
   },
   "by_outcome": {
     "result_hidden": 174,
-    "sold": 11917,
+    "sold": 11983,
     "unknown": 14,
     "unsold": 1127,
     "withdrawn": 3
   },
-  "carried_forward_rates": 524,
+  "carried_forward_rates": 547,
   "fx_failures": 0,
-  "in_scope": 13235,
+  "in_scope": 13301,
   "objects_by_category": {
-    "accessories": 1867,
-    "equestrian_travel": 178,
-    "fashion": 749,
-    "home": 1482,
-    "jewellery": 1684,
-    "other": 628,
-    "silk": 1740,
-    "watches": 480
+    "accessories": 1979,
+    "equestrian_travel": 184,
+    "fashion": 771,
+    "home": 1645,
+    "jewellery": 1806,
+    "other": 643,
+    "silk": 1914,
+    "watches": 507
   },
   "objects_by_house": {
     "artcurial": 781,
     "bonhams": 4525,
-    "christies": 1528,
-    "heritage": 580,
+    "christies": 1523,
+    "heritage": 1231,
     "poly_hk": 364,
-    "sothebys": 1030
+    "sothebys": 1025
   },
-  "objects_in_scope": 8808,
-  "objects_sold": 7605,
-  "objects_with_year": 4437,
-  "priced_in_cny": 11917,
-  "raw_lots": 32628,
-  "sold": 11917,
+  "objects_in_scope": 9449,
+  "objects_sold": 8246,
+  "objects_with_retail": 457,
+  "objects_with_year": 4562,
+  "priced_in_cny": 11983,
+  "raw_lots": 33655,
+  "sold": 11983,
   "unresolved_fields": {
     "colour": 251,
     "hardware": 421,
     "leather": 178,
-    "size_cm": 196
+    "size_cm": 200
   },
-  "untracked_bags": 4951,
+  "untracked_bags": 5169,
   "vocabulary_gaps": {
     "colour": [
       [
@@ -385,5 +386,5 @@
       ]
     ]
   },
-  "with_year": 13076
+  "with_year": 13139
 }
